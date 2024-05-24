@@ -121,3 +121,9 @@ cut -f2 -d, fourchords.csv | uniq | wc -l
 155
 ```
 </details>
+
+## Test
+
+```sh
+cargo test
+```
