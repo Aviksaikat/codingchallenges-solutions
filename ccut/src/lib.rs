@@ -1,4 +1,3 @@
-// src/lib.rs
 use std::{
     error::Error,
     io::{BufRead, Write},
@@ -16,6 +15,8 @@ impl Arguments {
         let mut delimiter = None;
         let mut file_name = None;
         const SKIP_CHALLENGE_PATH: usize = 1;
+        // println!("{:?}", args.iter());
+        //* Skip binary name that is target/debug/<name>
         let args = args.iter().skip(SKIP_CHALLENGE_PATH);
         const FIELD_COMMAND: &str = "-f";
         const DELIMITER_COMMAND: &str = "-d";
@@ -24,6 +25,7 @@ impl Arguments {
         for arg in args {
             if arg.starts_with(FIELD_COMMAND) {
                 current_command = FIELD_COMMAND;
+                //* if passed -f 1 or -d 1 or -f"1,2" or -f "1,2" etc.
                 if arg.len() > FIELD_COMMAND.len() {
                     let arg = arg.replace(FIELD_COMMAND, "");
                     fields_needed = Self::get_fields_needed(&arg)?;

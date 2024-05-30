@@ -1,0 +1,7 @@
+[package]
+name = "be"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# lb = { path = "../lb" }

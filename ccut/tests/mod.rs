@@ -15,7 +15,7 @@ mod tests {
             .replace("\r\n", "\n"); // Normalize line endings
 
         let actual_output = String::from_utf8_lossy(&output.stdout).replace("\r\n", "\n");
-        // Remove the stupid `\u{feff}` from the given file
+        //? Remove the stupid `\u{feff}` from the given file
         let actual_output = actual_output.trim_start_matches('\u{FEFF}');
         assert_eq!(actual_output, expected_output);
     }

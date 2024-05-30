@@ -1,4 +1,3 @@
-// src/main.rs
 use std::{
     env,
     error::Error,
@@ -16,6 +15,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     } = Arguments::new(&args)?;
 
     let reader: Box<dyn BufRead> = match file_name.as_deref() {
+        //* read from stdin
         Some("-") | None => Box::new(BufReader::new(io::stdin())),
         Some(file_name) => {
             let file = File::open(file_name)?;

@@ -1,0 +1,23 @@
+# [package]
+# name = "lb_be"
+# version = "0.1.0"
+# edition = "2021"
+
+# [dependencies]
+
+[workspace]
+members = [
+    "be",
+    "lb",
+]
+
+
+# #load balancer
+# [[bin]]
+# name = "lb"
+# path = "src/lb/main.rs"
+
+# # backend
+# [[bin]]
+# name = "be"
+# path = "src/be/main.rs"
