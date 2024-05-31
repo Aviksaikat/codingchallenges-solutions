@@ -13,33 +13,6 @@ pub fn start_load_balaner() {
 }
 
 fn handle_connection(mut stream: TcpStream) {
-    // let buf_reader = BufReader::new(&mut stream);
-    // let http_request: Vec<_> = buf_reader
-    //     .lines()
-    //     .map(|result| result.unwrap())
-    //     .take_while(|line| !line.is_empty())
-    //     .collect();
-
-    // // println!("Request: {:#?}", http_request);
-    // //* get the peer address
-    // let peer_addr = stream
-    //     .peer_addr()
-    //     .unwrap_or_else(|_| "unknown".parse().unwrap())
-    //     .to_string();
-
-    // //* strip the port from the peer address
-    // if peer_addr.len() > 1 {
-    //     let host_line = &peer_addr;
-    //     let host_parts: Vec<&str> = host_line.split(':').collect();
-    //     if host_parts.len() > 1 {
-    //         let host = host_parts[0].trim();
-    //         println!("Received request from {}", host);
-    //     }
-    // }
-
-    // for elem in http_request.iter() {
-    //     println!("{}", elem);
-    // }
     let peer_addr = stream.peer_addr().unwrap();
     println!("Received request from: {:?}", peer_addr);
     
@@ -58,8 +31,9 @@ fn forward_to_backend(request: &str) -> String {
     let mut backend_stream = TcpStream::connect("127.0.0.1:7879").unwrap();
     backend_stream.write_all(request.as_bytes()).unwrap();
 
-    let mut backend_response = String::new();
+    let mut backend_response = vec![];
     let mut backend_reader = BufReader::new(backend_stream);
-    backend_reader.read_to_string(&mut backend_response).unwrap();
-    backend_response
+    backend_reader.read_until(*"\r\n\r\n".as_bytes(), &mut backend_response).unwrap();
+    let backend_response = String::from_utf8_lossy(&backend_response);
+    backend_response.to_string()
 }

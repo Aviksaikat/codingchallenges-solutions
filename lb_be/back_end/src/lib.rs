@@ -21,7 +21,7 @@ fn handle_connection(mut stream: TcpStream) {
 
     println!("Request: {}", request);
 
-    let response = "HTTP/1.1 200 OK\r\nContent-Length: 23\r\n\r\nHello From Backend Server";
+    let response = "HTTP/1.1 200 OK\r\nContent-Length: 23\r\n\r\nHello From Backend Server\r\n";
     stream.write_all(response.as_bytes()).unwrap();
     println!("Replied with a hello message");
 }

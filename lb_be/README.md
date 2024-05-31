@@ -1,5 +1,7 @@
 # Build You Own Load Balancer
 
+## Incomplete 
+
 ```sh 
 ./lb
 Received request from 127.0.0.1
