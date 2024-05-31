@@ -7,10 +7,10 @@
 
 [workspace]
 members = [
-    "be",
-    "lb",
+    "back_end",
+    "load_balancer",
 ]
-
+resolver = "2"
 
 # #load balancer
 # [[bin]]
