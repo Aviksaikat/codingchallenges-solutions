@@ -1,5 +1,5 @@
-use lb::connection;
+use lb::start_load_balaner;
 
 fn main() {
-    connection();
+    start_load_balaner();
 }

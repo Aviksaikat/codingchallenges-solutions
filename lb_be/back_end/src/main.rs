@@ -1,7 +1,7 @@
 // * The backend logic
-extern crate lb;
+use be::start_backend_server;
 
 fn main() {
-    lb::connection();
+    start_backend_server();
     println!("hahah");
 }
